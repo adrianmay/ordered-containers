@@ -35,6 +35,7 @@ module Data.Map.Ordered
 	, fromList, assocs, toAscList
 	-- * 'M.Map' conversion
 	, toMap
+  , foldlWithKey'
 	) where
 
 import qualified Data.Map as M ()

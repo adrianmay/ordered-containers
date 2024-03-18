@@ -257,3 +257,8 @@ alter f k om@(OMap tvs kvs) =
     Just t -> OMap (M.alter (fmap (t,) . f . fmap snd) k tvs)
                    (M.alter (fmap (k,) . f . fmap snd) t kvs)
     Nothing -> maybe om ((om |>) . (k, )) $ f Nothing
+
+foldlWithKey' :: (a -> k -> v -> a) -> a -> OMap k v -> a
+foldlWithKey' f a (OMap _ kvs) = M.foldl' f' a kvs
+  where
+  f' a (k,v) = f a k v
